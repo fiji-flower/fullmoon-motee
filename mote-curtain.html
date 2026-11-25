@@ -24,6 +24,7 @@
   <span class="reflection" role="img" aria-label="Moté’s reflection">👻</span>
   <div class="curtain"></div>
 </div>
+
 <script>
   const curtain = document.querySelector(".curtain");
   const reflection = document.querySelector(".reflection");
@@ -32,12 +33,11 @@
 
     const distance = document.documentElement.scrollHeight - window.innerHeight;
     const progress = window.scrollY / distance;
-    curtain.style.transform = `translateX(${progress * -100}%)`;
+   		 curtain.style.transform = `translateX(${progress * -100}%)`;
 	const fadeProgress = Math.max(0, Math.min(1, (progress - 0.75) / 0.25));
 reflection.style.opacity = fadeProgress * 0.6;
   }
-
-  window.addEventListener("scroll", moveCurtain);
+	window.addEventListener("scroll", moveCurtain);
   moveCurtain();
 </script>
 </html>
