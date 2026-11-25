@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Moté’s bedroom</title>
+
+<style>
+  body { margin: 0; height: 200vh; background: #161324; }
+  .window { position: fixed; inset: 15%; overflow: hidden; background: #30294f; }
+  .moon { position: absolute; top: 20%; left: 25%; font-size: 48px; }
+  .curtain { position: absolute; inset: 0; background: repeating-linear-gradient(90deg, #ac80a7 0px, #f3cddd 24px, #ac80a7 48px); }
+.curtain { transform: translateX(90%); }
+.reflection {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 56px;
+  opacity: 0;
+}
+</style>
+
+<div class="window">
+  <span class="moon" role="img" aria-label="Crescent moon">🌙</span>
+  <span class="reflection" role="img" aria-label="Moté’s reflection">👻</span>
+  <div class="curtain"></div>
+</div>
+<script>
+  const curtain = document.querySelector(".curtain");
+  const reflection = document.querySelector(".reflection");
+
+  function moveCurtain() {
+
+    const distance = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = window.scrollY / distance;
+    curtain.style.transform = `translateX(${progress * -100}%)`;
+	const fadeProgress = Math.max(0, Math.min(1, (progress - 0.75) / 0.25));
+reflection.style.opacity = fadeProgress * 0.6;
+  }
+
+  window.addEventListener("scroll", moveCurtain);
+  moveCurtain();
+</script>
+</html>
